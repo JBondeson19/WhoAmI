@@ -1,0 +1,2 @@
+class MoodPostsController < ApplicationController
+end
