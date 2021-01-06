@@ -10,20 +10,20 @@ Post.destroy_all
 Mood.destroy_all
 MoodPost.destroy_all
 
-10.times do 
-    User.create(username: Faker::Internet.username, email: Faker::Internet.email)
-end 
+ 10.times do 
+    User.create(username: Faker::Internet.username, email: Faker::Internet.email, password: "Hey")
+end
 
 
 15.times do
-    Post.create(user_id: rand(14...23), content: Faker::Lorem.paragraph)
+    Post.create(user_id: rand(11...21), content: Faker::Lorem.paragraph)
 end
 
 25.times do
     emotion = ["Happy","Sad", "Excited", "Confused", "Anxious", "Grateful", "Stressed", "Annoyed", "Elated", "Relieved"]
-    Mood.create(user_id: rand(14...23), emotion: emotion.sample)
+    Mood.create(user_id: rand(11...21), emotion: emotion.sample)
 end
 
 12.times do
-    MoodPost.create(mood_id: rand(21...40), post_id: (13...24))
+    MoodPost.create(mood_id: rand(1...15), post_id: (1...25))
 end
