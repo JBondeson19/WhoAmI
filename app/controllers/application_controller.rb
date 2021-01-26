@@ -17,11 +17,12 @@ class ApplicationController < ActionController::API
         if auth_header
             token = auth_header.split(' ')[1]
             # headers: { 'Authorization': 'Bearer <token>' }
-        begin
+            begin
             JWT.decode(token, 'J@m3s', true, algorithm: 'HS256')
             # JWT.decode => [{ "beef"=>"steak" }, { "alg"=>"HS256" }]
-        rescue JWT::DecodeError
+            rescue JWT::DecodeError
             nil
+            end
         end
     end
 
@@ -32,11 +33,10 @@ class ApplicationController < ActionController::API
           user_id = decoded_token[0]['user_id']
           @user = User.find_by(id: user_id)
         end
-      end
+    end
     
-      def logged_in?
+    def logged_in?
         !!current_user
-      end
     end
 
     def authorized
